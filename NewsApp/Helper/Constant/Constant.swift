@@ -27,6 +27,11 @@ public struct AppKey
     public static let device_id = "device_id"
 }
 
+class Global {
+    static var email = ""
+    static var password = ""
+}
+
 let NOINTERNET = "No Internet Connection"
 let APPNAME = "News App"
 

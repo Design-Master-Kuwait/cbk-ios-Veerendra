@@ -61,3 +61,39 @@ extension UIButton{
     }
 }
 
+extension String
+{
+    func localalizedString(str:String) -> String
+    {
+        let path = Bundle.main.path(forResource: str, ofType: "lproj")
+        let bundle = Bundle(path: path!)
+        return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
+    }
+}
+extension UIColor {
+    
+   static func setColor(lightColor: UIColor, darkColor: UIColor) -> UIColor {
+        if #available(iOS 13, *) {
+            return UIColor{ (traitCollection) -> UIColor in
+                return traitCollection.userInterfaceStyle == .light ? lightColor : darkColor
+            }
+        } else {
+            return lightColor
+        }
+    }
+    
+}
+extension UINavigationController {
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        switch traitCollection.userInterfaceStyle {
+        case .light:
+            return .darkContent
+        case .dark:
+            return .lightContent
+        case .unspecified:
+            return .default
+        @unknown default:
+            return.default
+        }
+    }
+}

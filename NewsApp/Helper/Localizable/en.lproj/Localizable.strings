@@ -1,7 +1,19 @@
-/* 
+/*
   Localizable.strings
   NewsApp
 
   Created by Apple on 25/05/23.
   
 */
+
+"Email" = "Email";
+"Password" = "Password";
+"Login" = "Login";
+"Choose Language" = "Choose Language";
+"Language" = "Language";
+"Settings" = "Settings";
+"My Profile" = "My Profile";
+"Change Language" = "Change Language";
+"Switch to Dark Mode" = "Switch to Dark Mode";
+"Enable Fingerprint" = "Enable Fingerprint";
+"Logout" = "Logout";

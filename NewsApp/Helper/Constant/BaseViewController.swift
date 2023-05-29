@@ -19,7 +19,7 @@ class BaseViewController: UIViewController {
     // --------------------------------------------------------
     public func setupNavigationBar(title:String, img:String, imgRight:String, isBackButton:Bool, isRightButton:Bool, isBackButtonItem:Bool) {
         navigationController?.navigationBar.isHidden = false
-        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.navigationBar.backgroundColor = UIColor.setColor(lightColor: UIColor.white, darkColor: .black)
         self.view.backgroundColor = .white
         let separator = UILabel(frame: CGRect(x: 0, y: (navigationController?.navigationBar.frame.size.height)!, width: (navigationController?.navigationBar.frame.size.width)!, height: 0.5))
         separator.backgroundColor =  #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
@@ -82,7 +82,7 @@ class BaseViewController: UIViewController {
     // --------------------------------------------------------
     func authenticationWithTouchID() {
             let localAuthenticationContext = LAContext()
-            localAuthenticationContext.localizedFallbackTitle = "1234567890"
+            localAuthenticationContext.localizedFallbackTitle = "Username"
 
             var authError: NSError?
             let reasonString = "To access the secure data"
@@ -93,7 +93,13 @@ class BaseViewController: UIViewController {
                     
                     if success {
                         
-                        
+                        let userId = KeyChainWrapper.retriveValue(id: "UserId")
+                        if userId == "" {
+                            print("Not available")
+                        } else {
+                            let vc = self.storyboard?.instantiateViewController(withIdentifier: "HomeVC")
+                            self.navigationController?.pushViewController(vc!, animated: true)
+                        }
                         
                         //TODO: User authenticated successfully, take appropriate action
                         
@@ -202,5 +208,82 @@ class BaseViewController: UIViewController {
         navigationController?.pushViewController(vc!, animated: true)
         
     }
+    
+    
+    
+    func ChangeStayusBarColor(){
+           if #available(iOS 13.0, *) {
+                   let app = UIApplication.shared
+                   let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+                   
+                   let statusbarView = UIView()
+                   statusbarView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                   view.addSubview(statusbarView)
+                 
+                   statusbarView.translatesAutoresizingMaskIntoConstraints = false
+                   statusbarView.heightAnchor
+                       .constraint(equalToConstant: statusBarHeight).isActive = true
+                   statusbarView.widthAnchor
+                       .constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+                   statusbarView.topAnchor
+                       .constraint(equalTo: view.topAnchor).isActive = true
+                   statusbarView.centerXAnchor
+                       .constraint(equalTo: view.centerXAnchor).isActive = true
+                 
+               } else {
+                   let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
+                   statusBar?.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+               }
+           }
+    
+    func ChangeStayusBarColorWhite(){
+           if #available(iOS 13.0, *) {
+                   let app = UIApplication.shared
+                   let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+                   
+                   let statusbarView = UIView()
+                   statusbarView.backgroundColor = #colorLiteral(red: 1, green: 0.9999999404, blue: 0.9999999404, alpha: 1)
+                   view.addSubview(statusbarView)
+                 
+                   statusbarView.translatesAutoresizingMaskIntoConstraints = false
+                   statusbarView.heightAnchor
+                       .constraint(equalToConstant: statusBarHeight).isActive = true
+                   statusbarView.widthAnchor
+                       .constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+                   statusbarView.topAnchor
+                       .constraint(equalTo: view.topAnchor).isActive = true
+                   statusbarView.centerXAnchor
+                       .constraint(equalTo: view.centerXAnchor).isActive = true
+                 
+               } else {
+                   let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
+                   statusBar?.backgroundColor = #colorLiteral(red: 1, green: 0.9999999404, blue: 0.9999999404, alpha: 1)
+               }
+           }
+    
+  
+    
+}
+class DarkModeAwareNavigationController: UINavigationController {
 
+  override init(rootViewController: UIViewController) {
+       super.init(rootViewController: rootViewController)
+       self.updateBarTintColor()
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+       super.init(coder: aDecoder)
+       self.updateBarTintColor()
+  }
+
+  override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+       super.traitCollectionDidChange(previousTraitCollection)
+       self.updateBarTintColor()
+  }
+
+  private func updateBarTintColor() {
+       if #available(iOS 13.0, *) {
+            self.navigationBar.barTintColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
+  }
+  }
 }

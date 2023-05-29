@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class LoginController: BaseViewController {
     
@@ -15,6 +16,7 @@ class LoginController: BaseViewController {
     @IBOutlet weak var txtFldEmail: UITextField!
     @IBOutlet weak var txtFldPassword: UITextField!
     @IBOutlet weak var btnFingerprint: UIButton!
+    private let biometricIDAuth = BiometricIDAuth()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +26,39 @@ class LoginController: BaseViewController {
     // MARK: - Update UI
     private func setupUI()
     {
+        if LocalStore.shared.engTrueArabicFalse {
+            txtFldEmail.placeholder = "Email".localalizedString(str: "en")
+            txtFldPassword.placeholder = "Password".localalizedString(str: "en")
+            btnLogin.setTitle("Login".localalizedString(str: "en"), for: .normal)
+            txtFldEmail.textAlignment = .left
+            txtFldPassword.textAlignment = .left
+            btnFingerprint.setTitle("Login with Fingerprint".localalizedString(str: "en"), for: .normal)
+            setupNavigationBar(title: "Login".localalizedString(str: "en"), img: "back", imgRight: "", isBackButton: false, isRightButton: false, isBackButtonItem: true)
+        } else {
+            
+            txtFldEmail.placeholder = "Email".localalizedString(str: "ar")
+            txtFldPassword.placeholder = "Password".localalizedString(str: "ar")
+            btnLogin.setTitle("Login".localalizedString(str: "ar"), for: .normal)
+            txtFldEmail.textAlignment = .right
+            txtFldPassword.textAlignment = .right
+            btnFingerprint.setTitle("Login with Fingerprint".localalizedString(str: "ar"), for: .normal)
+            setupNavigationBar(title: "Login".localalizedString(str: "ar"), img: "back", imgRight: "", isBackButton: false, isRightButton: false, isBackButtonItem: true)
+        }
+        txtFldEmail.placeholderColor(color: UIColor.setColor(lightColor: #colorLiteral(red: 170/255, green: 170/255, blue: 170/255, alpha: 1), darkColor: #colorLiteral(red: 170/255, green: 170/255, blue: 170/255, alpha: 1)))
+        txtFldPassword.placeholderColor(color: UIColor.setColor(lightColor: #colorLiteral(red: 170/255, green: 170/255, blue: 170/255, alpha: 1), darkColor: #colorLiteral(red: 170/255, green: 170/255, blue: 170/255, alpha: 1)))
         
-        setupNavigationBar(title: "Login", img: "back", imgRight: "", isBackButton: false, isRightButton: false, isBackButtonItem: true)
+        if self.traitCollection.userInterfaceStyle == .dark {
+            ChangeStayusBarColor()
+        } else {
+            ChangeStayusBarColorWhite()
+        }
         viewEmail.addShadowToView()
         viewPassword.addShadowToView()
         btnLogin.addShadowToButton()
-        UserDefaults.standard.set(true, forKey: "engTrueArabicFalse")
-        let userId = KeyChainWrapper.retriveValue(id: "UserId")
-        if userId == ""{
+        setNeedsStatusBarAppearanceUpdate()
+        let email = KeyChainWrapper.retriveValue(id: "email")
+        let password = KeyChainWrapper.retriveValue(id: "password")
+        if email == "" && password == ""{
             btnFingerprint.isHidden = true
         } else {
             btnFingerprint.isHidden = false
@@ -42,16 +69,23 @@ class LoginController: BaseViewController {
         loginValidation()
     }
     @IBAction func btnFingerprint (_ sender:UIButton) {
-        authenticationWithTouchID()
-        
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [self] in
-            let userId = KeyChainWrapper.retriveValue(id: "UserId")
-            if userId == "" {
-                print("Not available")
-            } else {
-                let vc = storyboard?.instantiateViewController(withIdentifier: "HomeVC")
-                navigationController?.pushViewController(vc!, animated: true)
+        biometricIDAuth.canEvaluate { (canEvaluate, _, canEvaluateError) in
+            guard canEvaluate else {
+                AlertClass.alert(title: "Error",
+                                 message: canEvaluateError?.localizedDescription ?? "Face ID/Touch ID may not be configured",
+                                 okActionTitle: "OK")
+                return
+            }
+            
+            biometricIDAuth.evaluate { (success, error) in
+                guard success else {
+                    AlertClass.alert(title: "Error",
+                                     message: error?.localizedDescription ?? "Face ID/Touch ID may not be configured",
+                                     okActionTitle: "OK")
+                    return
+                }
+                self.pushToViewController(sb_Id: "HomeVC")
+                
             }
         }
     }
@@ -64,6 +98,8 @@ extension LoginController {
     
     func loginValidation()
     {
+        Global.email = txtFldEmail.text ?? ""
+        Global.password = txtFldPassword.text ?? ""
         if LocalStore.shared.engTrueArabicFalse {
             let emailText = txtFldEmail.text ?? ""
             let passWordText = txtFldPassword.text ?? ""

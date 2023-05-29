@@ -17,8 +17,15 @@ class HomeVC: BaseViewController {
     
     //MARK: - Update UI
     private func setupUI() {
+        if self.traitCollection.userInterfaceStyle == .dark {
+            ChangeStayusBarColor()
+        } else {
+            ChangeStayusBarColorWhite()
+        }
+        view.backgroundColor = UIColor.setColor(lightColor: .white, darkColor: .black)
         setupNavigationBar(title: "Home", img: "", imgRight: "settings", isBackButton: false, isRightButton: true, isBackButtonItem: true)
     }
+    
     
     
     
