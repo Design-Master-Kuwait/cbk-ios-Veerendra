@@ -4,7 +4,7 @@
 import UIKit
 
 
-public let baseURL = ""
+public let baseURL = "https://newsapi.org/v2/"
 
 
 public struct API {
@@ -13,7 +13,7 @@ public struct API {
     
     // Mark : - Login & Register Api's -
     
-//    public static let Login_Api               =  baseURL + "login"
+    public static let NewsHome_Api               =  baseURL + "top-headlines?"
     
 }
 

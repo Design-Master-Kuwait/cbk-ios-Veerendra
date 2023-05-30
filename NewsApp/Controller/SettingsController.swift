@@ -36,12 +36,12 @@ class SettingsController: BaseViewController {
         if LocalStore.shared.engTrueArabicFalse {
             arr = ["My Profile".localalizedString(str: "en"), "Change Language".localalizedString(str: "en"), "Switch to Dark Mode".localalizedString(str: "en"), "Enable Fingerprint".localalizedString(str: "en"), "Logout".localalizedString(str: "en")]
             arrUpdated = ["My Profile".localalizedString(str: "en"), "Change Language".localalizedString(str: "en"), "Switch to Dark Mode".localalizedString(str: "en"), "Logout".localalizedString(str: "en")]
-            setupNavigationBar(title: "Settings".localalizedString(str: "en"), img: "back", imgRight: "", isBackButton: true, isRightButton: false, isBackButtonItem: false)
+            setupNavigationBar(title: "Settings".localalizedString(str: "en"), img: "back", imgRight: "", isBackButton: true, isRightButton: false, isBackButtonItem: false, isRightButton2: false, imgRight2: "")
         } else {
             
             arr = ["My Profile".localalizedString(str: "ar"), "Change Language".localalizedString(str: "ar"), "Switch to Dark Mode".localalizedString(str: "ar"), "Enable Fingerprint".localalizedString(str: "ar"), "Logout".localalizedString(str: "ar")]
             arrUpdated = ["My Profile".localalizedString(str: "ar"), "Change Language".localalizedString(str: "ar"), "Switch to Dark Mode".localalizedString(str: "ar"), "Logout".localalizedString(str: "ar")]
-            setupNavigationBar(title: "Settings".localalizedString(str: "ar"), img: "back", imgRight: "", isBackButton: true, isRightButton: false, isBackButtonItem: false)
+            setupNavigationBar(title: "Settings".localalizedString(str: "ar"), img: "back", imgRight: "", isBackButton: true, isRightButton: false, isBackButtonItem: false, isRightButton2: false, imgRight2: "")
         }
         
         
@@ -250,7 +250,14 @@ extension SettingsController: UIPickerViewDataSource, UIPickerViewDelegate {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        self.textField.text = self.languages[row]
+        if self.languages[row] == "English" {
+            AppUserDefaults.set(true, forKey: "engTrueArabicFalse")
+        }
+        else
+        {
+            AppUserDefaults.set(false, forKey: "engTrueArabicFalse")
+        }
+        tableview.reloadData()
     }
 }
 

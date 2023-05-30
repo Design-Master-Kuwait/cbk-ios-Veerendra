@@ -10,22 +10,22 @@ import SVProgressHUD
 
 class Services: NSObject {
     
-    class func headers() -> HTTPHeaders {
-        
-        let deviceId = UIDevice.current.identifierForVendor?.uuidString
-        let headers: HTTPHeaders = [ "api-version":"v1"]
-        return headers
-    }
-    
-    class func headers2() -> HTTPHeaders {
-        
-        let token = "\(UserDefaults.standard.value(forKey: "token") ?? "")"
-        let  headers2 : HTTPHeaders =  [
-            "Authorization": "Bearer \(token)"
-        ]
-        
-        return headers2
-    }
+//    class func headers() -> HTTPHeaders {
+//
+//        let deviceId = UIDevice.current.identifierForVendor?.uuidString
+//        let headers: HTTPHeaders = [ "api-version":"v1"]
+//        return headers
+//    }
+//
+//    class func headers2() -> HTTPHeaders {
+//
+//        let token = "\(UserDefaults.standard.value(forKey: "token") ?? "")"
+//        let  headers2 : HTTPHeaders =  [
+//            "Authorization": "Bearer \(token)"
+//        ]
+//
+//        return headers2
+//    }
     
     // MARK : With header API Post
     class  func postRequest12(url:String,view:UIView,param:[String:Any],shouldAnimateHudd:Bool,refreshControl:UIRefreshControl? = nil, completionBlock: @escaping ( _ responseObject: Data) -> Void) {
@@ -34,10 +34,10 @@ class Services: NSObject {
                 LoaderClass.startLoader()
             }
             print("url is ====================== \(url)")
-            print("Header is =================== \(Services.headers2())")
+//            print("Header is =================== \(Services.headers2())")
             print("param is ==================== \(param)")
             print("=============================")
-            AF.request(url, method : .post, parameters : param, encoding : JSONEncoding.default , headers : Services.headers2()).responseJSON { (response:DataResponse) in
+            AF.request(url, method : .post, parameters : param, encoding : JSONEncoding.default , headers : nil).responseJSON { (response:DataResponse) in
                 print("StatusCode is =============== \(response.response?.statusCode ?? 1100 )")
                 print(response)
                 if shouldAnimateHudd {
@@ -259,7 +259,7 @@ class Services: NSObject {
             print("url is ====================== \(url)")
             print("param is ==================== \(param)")
             print("=============================")
-            AF.request(url, method : .post, parameters : param, encoding : JSONEncoding.default, headers : Services1.headers2()).responseJSON { (response:DataResponse) in
+            AF.request(url, method : .post, parameters : param, encoding : JSONEncoding.default, headers : nil).responseJSON { (response:DataResponse) in
                 print("StatusCode is =============== \(response.response?.statusCode ?? 1100 )")
                 print(response)
                 if shouldAnimateHudd {
@@ -334,9 +334,9 @@ class Services: NSObject {
                 LoaderClass.startLoader()
             }
             print("url is ====================== \(url)")
-            print("Header is =================== \(Services1.headers2())")
+//            print("Header is =================== \(Services1.headers2())")
             print("=============================")
-            AF.request(url, method : .get, encoding : JSONEncoding.default , headers : Services1.headers2()).responseJSON { (response:DataResponse) in
+            AF.request(url, method : .get, encoding : JSONEncoding.default , headers : nil).responseJSON { (response:DataResponse) in
                 print("StatusCode is =============== \(response.response?.statusCode ?? 1100 )")
                 print(response)
                 if shouldAnimateHudd {
@@ -432,12 +432,12 @@ class LoaderClass {
 }
 
 
-class Services1: NSObject
-{
-    class func headers2() -> HTTPHeaders
-    {
-        let token = "\(UserDefaults.standard.value(forKey: "token") ?? "")"
-        let  headers2 : HTTPHeaders = ["Authorization": "Bearer \(token)"]
-        return headers2
-    }
-}
+//class Services1: NSObject
+//{
+//    class func headers2() -> HTTPHeaders
+//    {
+//        let token = "\(UserDefaults.standard.value(forKey: "token") ?? "")"
+//        let  headers2 : HTTPHeaders = ["Authorization": "Bearer \(token)"]
+//        return headers2
+//    }
+//}

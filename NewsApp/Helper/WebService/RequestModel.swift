@@ -3,12 +3,11 @@ import Foundation
 import UIKit
 
 
-enum Login {
+enum Home {
     
     struct Request {
-        
-        var email : String?
-        var password : String?
+        var page: Int?
+        var category: String?
     }
     
 }

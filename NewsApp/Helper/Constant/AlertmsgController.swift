@@ -32,6 +32,15 @@ class AlertClass {
         UIApplication.shared.windows.first?.rootViewController?.present(alertController, animated: true, completion: nil)
     }
     
+    class func alert(title: String, message: String, okActionTitle: String) {
+        let alertView = UIAlertController(title: title,
+                                          message: message,
+                                          preferredStyle: .alert)
+        let okAction = UIAlertAction(title: okActionTitle, style: .default)
+        alertView.addAction(okAction)
+        UIApplication.shared.windows.first?.rootViewController?.present(alertView, animated: true)
+    }
+    
  
     
 }

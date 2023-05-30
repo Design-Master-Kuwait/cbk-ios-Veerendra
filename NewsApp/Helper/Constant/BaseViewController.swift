@@ -9,15 +9,15 @@ import UIKit
 import LocalAuthentication
 
 
+
 class BaseViewController: UIViewController {
 
   
     
-    
     // --------------------------------------------------------
     // MARK: - Navigation Bar Setup
     // --------------------------------------------------------
-    public func setupNavigationBar(title:String, img:String, imgRight:String, isBackButton:Bool, isRightButton:Bool, isBackButtonItem:Bool) {
+    public func setupNavigationBar(title:String, img:String, imgRight:String, isBackButton:Bool, isRightButton:Bool, isBackButtonItem:Bool, isRightButton2: Bool, imgRight2:String) {
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.backgroundColor = UIColor.setColor(lightColor: UIColor.white, darkColor: .black)
         self.view.backgroundColor = .white
@@ -31,10 +31,10 @@ class BaseViewController: UIViewController {
         } else {
             self.navigationItem.setHidesBackButton(false, animated: true)
         }
-        setupNavigationBarItems(title: title, img: img, isBackButton: isBackButton, isRight: isRightButton, imgRight: imgRight)
+        setupNavigationBarItems(title: title, img: img, isBackButton: isBackButton, isRight: isRightButton, imgRight: imgRight, isRight2: isRightButton2, imgRight2: imgRight2)
     }
     
-    public func setupNavigationBarItems(title:String, img:String, isBackButton:Bool, isRight:Bool, imgRight:String) {
+    public func setupNavigationBarItems(title:String, img:String, isBackButton:Bool, isRight:Bool, imgRight:String, isRight2: Bool, imgRight2:String) {
         navigationItem.title = title
         
         if isBackButton{
@@ -42,8 +42,10 @@ class BaseViewController: UIViewController {
         } else
         
         if isRight{
-            setupRightNavigationBar(img: imgRight)
+            setupRightNavigationBar(img: imgRight, img2: imgRight2, isRight2: isRight2, isRight: isRight)
         }
+        
+        
     }
     
     public func setupLeftNavigationBar(img:String) {
@@ -53,12 +55,26 @@ class BaseViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: btnBack)
     }
     
-    public func setupRightNavigationBar(img:String) {
+    public func setupRightNavigationBar(img:String, img2:String, isRight2:Bool, isRight:Bool) {
         let btnSettings = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
         btnSettings.setImage(UIImage(named: img), for: .normal)
         btnSettings.addTarget(self, action: #selector(_handrightBackTapped), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: btnSettings)
+        
+        
+        let btnFilter = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        btnFilter.setImage(UIImage(named: img2), for: .normal)
+        btnFilter.addTarget(self, action: #selector(_handrightBackTapped2), for: .touchUpInside)
+        if isRight2 && isRight{
+            navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: btnFilter), UIBarButtonItem(customView: btnSettings)]
+        } else {
+            if isRight {
+                navigationItem.rightBarButtonItem = UIBarButtonItem(customView: btnSettings)
+            } else {
+                navigationItem.rightBarButtonItem = UIBarButtonItem(customView: btnFilter)
+            }
+        }
     }
+   
     
 
     // --------------------------------------------------------
@@ -71,6 +87,10 @@ class BaseViewController: UIViewController {
     
     @objc func _handrightBackTapped() {
         pushToViewController(sb_Id: "SettingsController")
+    }
+    
+    @objc func _handrightBackTapped2() {
+        
     }
     
     

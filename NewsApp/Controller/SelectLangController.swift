@@ -25,10 +25,10 @@ class SelectLangController: BaseViewController {
     func setupUI() {
         if LocalStore.shared.engTrueArabicFalse {
             lblChoose.text = "Choose Language".localalizedString(str: "en")
-            setupNavigationBar(title: "Language".localalizedString(str: "en"), img: "", imgRight: "", isBackButton: false, isRightButton: false, isBackButtonItem: false)
+            setupNavigationBar(title: "Language".localalizedString(str: "en"), img: "", imgRight: "", isBackButton: false, isRightButton: false, isBackButtonItem: false, isRightButton2: false, imgRight2: "")
         } else {
             lblChoose.text = "Choose Language".localalizedString(str: "ar")
-            setupNavigationBar(title: "Language".localalizedString(str: "ar"), img: "", imgRight: "", isBackButton: false, isRightButton: false, isBackButtonItem: false)
+            setupNavigationBar(title: "Language".localalizedString(str: "ar"), img: "", imgRight: "", isBackButton: false, isRightButton: false, isBackButtonItem: false, isRightButton2: false, imgRight2: "")
         }
         
         lblChoose.textColor = UIColor.setColor(lightColor: .black, darkColor: .black)
@@ -41,6 +41,18 @@ class SelectLangController: BaseViewController {
         }
         
     }
+    //    override var preferredStatusBarStyle: UIStatusBarStyle {
+    //        switch traitCollection.userInterfaceStyle {
+    //        case .light:
+    //            return .darkContent
+    //        case .dark:
+    //            return .lightContent
+    //        case .unspecified:
+    //            return .default
+    //        @unknown default:
+    //            return.default
+    //        }
+    //    }
     //MARK: - Button's Action
     @IBAction func btnEnglish (_ sender: UIButton) {
         LocalStore.shared.engTrueArabicFalse = true
