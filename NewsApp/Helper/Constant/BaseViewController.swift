@@ -17,7 +17,7 @@ class BaseViewController: UIViewController {
     // --------------------------------------------------------
     // MARK: - Navigation Bar Setup
     // --------------------------------------------------------
-    public func setupNavigationBar(title:String, img:String, imgRight:String, isBackButton:Bool, isRightButton:Bool, isBackButtonItem:Bool, isRightButton2: Bool, imgRight2:String) {
+    public func setupNavigationBar(title:String, img:String, imgRight:String, isBackButton:Bool, isRightButton:Bool, isBackButtonItem:Bool, isRightButton2: Bool, imgRight2:String, leftButton2:Bool, leftButton2Img:String, isCountrySelected:Bool) {
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.backgroundColor = UIColor.setColor(lightColor: UIColor.white, darkColor: .black)
         self.view.backgroundColor = .white
@@ -31,15 +31,15 @@ class BaseViewController: UIViewController {
         } else {
             self.navigationItem.setHidesBackButton(false, animated: true)
         }
-        setupNavigationBarItems(title: title, img: img, isBackButton: isBackButton, isRight: isRightButton, imgRight: imgRight, isRight2: isRightButton2, imgRight2: imgRight2)
+        setupNavigationBarItems(title: title, img: img, isBackButton: isBackButton, isRight: isRightButton, imgRight: imgRight, isRight2: isRightButton2, imgRight2: imgRight2, leftButton2: leftButton2, leftButton2Img: leftButton2Img, isCountrySelected:isCountrySelected)
     }
     
-    public func setupNavigationBarItems(title:String, img:String, isBackButton:Bool, isRight:Bool, imgRight:String, isRight2: Bool, imgRight2:String) {
+    public func setupNavigationBarItems(title:String, img:String, isBackButton:Bool, isRight:Bool, imgRight:String, isRight2: Bool, imgRight2:String, leftButton2:Bool, leftButton2Img:String, isCountrySelected:Bool) {
         navigationItem.title = title
         
-        if isBackButton{
-            setupLeftNavigationBar(img: img)
-        } else
+        if isBackButton || isCountrySelected{
+            setupLeftNavigationBar(img: img, backButton: isBackButton, leftButton2: leftButton2, leftButton2Img: leftButton2Img)
+        }
         
         if isRight{
             setupRightNavigationBar(img: imgRight, img2: imgRight2, isRight2: isRight2, isRight: isRight)
@@ -48,11 +48,26 @@ class BaseViewController: UIViewController {
         
     }
     
-    public func setupLeftNavigationBar(img:String) {
+    public func setupLeftNavigationBar(img:String, backButton: Bool, leftButton2:Bool, leftButton2Img:String) {
         let btnBack = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
         btnBack.setImage(UIImage(named: img), for: .normal)
         btnBack.addTarget(self, action: #selector(_handleftnBackTapped), for: .touchUpInside)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: btnBack)
+        
+        let btnCountry = UIButton(frame: CGRect(x: 0, y: 0, width: 25, height: 25))
+        btnCountry.setImage(UIImage(named: leftButton2Img), for: .normal)
+        btnCountry.addTarget(self, action: #selector(_handleftnBackTapped2), for: .touchUpInside)
+        
+        if leftButton2 && backButton {
+            navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: btnBack), UIBarButtonItem(customView: btnCountry)]
+        } else {
+            if leftButton2{
+                navigationItem.leftBarButtonItem = UIBarButtonItem(customView: btnCountry)
+            }else {
+                navigationItem.leftBarButtonItem = UIBarButtonItem(customView: btnBack)
+            }
+        }
+        
+        
     }
     
     public func setupRightNavigationBar(img:String, img2:String, isRight2:Bool, isRight:Bool) {
@@ -83,6 +98,10 @@ class BaseViewController: UIViewController {
 
     @objc fileprivate func _handleftnBackTapped() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func _handleftnBackTapped2() {
+        
     }
     
     @objc func _handrightBackTapped() {

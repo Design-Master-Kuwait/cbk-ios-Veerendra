@@ -30,6 +30,10 @@ public struct AppKey
 class Global {
     static var email = ""
     static var password = ""
+    static var category = ""
+    static var country = "in"
+    static var page = 1
+    static var selectCount = 0
 }
 
 let NOINTERNET = "No Internet Connection"

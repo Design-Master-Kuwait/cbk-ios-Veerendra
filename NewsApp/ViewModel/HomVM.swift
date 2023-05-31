@@ -19,7 +19,8 @@ class HomeVM {
         
         let page = request.page ?? 1
         let category = request.category ?? ""
-        let url = API.NewsHome_Api + "country=\("in")&apiKey=\("a9f7b40a4b1b47009caf85e25f6a998f")&page=\(page)&category=\(category)"
+        let country = request.country ?? ""
+        let url = API.NewsHome_Api + "country=\(country)&apiKey=\("a9f7b40a4b1b47009caf85e25f6a998f")&page=\(page)&category=\(category)"
         
             Services.getRequest(url: url,view: viewCont.view, shouldAnimateHudd: true) { (responseData) in
                 

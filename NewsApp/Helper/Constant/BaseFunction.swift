@@ -43,11 +43,51 @@ extension UIView {
     
     func addShadowToView(){
         let view = self
-        view.layer.shadowColor = UIColor.lightGray.cgColor
+        view.layer.shadowColor = UIColor.darkGray.cgColor
         view.layer.shadowOpacity = 1
         view.layer.shadowOffset = .zero
         view.layer.shadowRadius = 5
-        view.layer.cornerRadius = 7
+        view.layer.cornerRadius = 10
+    }
+    
+    enum Direction: Int {
+        case topToBottom = 0
+        case bottomToTop
+        case leftToRight
+        case rightToLeft
+    }
+    
+    func applyGradient(colors: [Any]?, locations: [NSNumber]? = [0.0, 1.0], direction: Direction = .topToBottom) {
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.bounds
+        gradientLayer.colors = colors
+        gradientLayer.locations = locations
+        
+        switch direction {
+        case .topToBottom:
+            gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+            gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+            
+        case .bottomToTop:
+            gradientLayer.startPoint = CGPoint(x: 0.5, y: 1.0)
+            gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
+            
+        case .leftToRight:
+            gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+            gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
+            
+        case .rightToLeft:
+            gradientLayer.startPoint = CGPoint(x: 1.0, y: 0.5)
+            gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.5)
+        }
+        
+        self.layer.addSublayer(gradientLayer)
+    }
+    
+    func roundCorners(with CACornerMask: CACornerMask, radius: CGFloat) {
+        self.layer.cornerRadius = radius
+        self.layer.maskedCorners = [CACornerMask]
     }
 }
 extension UIButton{

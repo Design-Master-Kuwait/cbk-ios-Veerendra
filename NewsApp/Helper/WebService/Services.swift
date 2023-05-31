@@ -371,8 +371,7 @@ class Services: NSObject {
                                 {
                                     if (message["message"] as? String) != nil
                                     {
-                                        let alertController = UIAlertController(title: APPNAME, message:
-                                                                                    (message["message"] as? String ?? ""), preferredStyle: .alert)
+                                        let alertController = UIAlertController(title: APPNAME, message: "No data coming. Please try after sometime.", preferredStyle: .alert)
                                         alertController.view.tintColor = UIColor.black
                                         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
                                         }))

@@ -36,6 +36,8 @@
 		18A074D72A247C1E004B228B /* SelectLangController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A074D62A247C1E004B228B /* SelectLangController.swift */; };
 		18A074D92A24CAB2004B228B /* HomVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A074D82A24CAB2004B228B /* HomVM.swift */; };
 		18A074E22A24CD9B004B228B /* HomeBaseMDL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A074E12A24CD9B004B228B /* HomeBaseMDL.swift */; };
+		18A074E82A274A16004B228B /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 18A074E72A274A15004B228B /* countries.json */; };
+		18A074EA2A274D83004B228B /* CountryMDL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A074E92A274D83004B228B /* CountryMDL.swift */; };
 		18D4D6732A2090900048EC23 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4D6722A2090900048EC23 /* HomeVC.swift */; };
 		18D4D67A2A20A8030048EC23 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4D6792A20A8030048EC23 /* BaseViewController.swift */; };
 		C645D36F0703A0EF7944BC2A /* Pods_NewsApp_NewsAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0115566EE9F17059FDC9BF18 /* Pods_NewsApp_NewsAppUITests.framework */; };
@@ -99,6 +101,8 @@
 		18A074D62A247C1E004B228B /* SelectLangController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLangController.swift; sourceTree = "<group>"; };
 		18A074D82A24CAB2004B228B /* HomVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomVM.swift; sourceTree = "<group>"; };
 		18A074E12A24CD9B004B228B /* HomeBaseMDL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBaseMDL.swift; sourceTree = "<group>"; };
+		18A074E72A274A15004B228B /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		18A074E92A274D83004B228B /* CountryMDL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryMDL.swift; sourceTree = "<group>"; };
 		18D4D6722A2090900048EC23 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		18D4D6792A20A8030048EC23 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		224B688CAF29D4CF927B22F7 /* Pods_NewsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				1828ABF02A1F6FA3004D7E38 /* Constant.swift */,
+				18A074E72A274A15004B228B /* countries.json */,
 				18D4D6792A20A8030048EC23 /* BaseViewController.swift */,
 				1828AE4A2A1F8438004D7E38 /* BaseFunction.swift */,
 				1828ABF22A1F6FA3004D7E38 /* ReachabilityNetwork.swift */,
@@ -284,6 +289,7 @@
 			isa = PBXGroup;
 			children = (
 				18A074E12A24CD9B004B228B /* HomeBaseMDL.swift */,
+				18A074E92A274D83004B228B /* CountryMDL.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -422,6 +428,7 @@
 				1828ABA52A1F6EB9004D7E38 /* LaunchScreen.storyboard in Resources */,
 				1828AC432A1F794C004D7E38 /* Localizable.strings in Resources */,
 				1828ABA22A1F6EB9004D7E38 /* Assets.xcassets in Resources */,
+				18A074E82A274A16004B228B /* countries.json in Resources */,
 				1828AB9D2A1F6EB8004D7E38 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,6 +561,7 @@
 				1828AE4B2A1F8438004D7E38 /* BaseFunction.swift in Sources */,
 				1828AB962A1F6EB8004D7E38 /* AppDelegate.swift in Sources */,
 				18A074E22A24CD9B004B228B /* HomeBaseMDL.swift in Sources */,
+				18A074EA2A274D83004B228B /* CountryMDL.swift in Sources */,
 				18A074D32A21C76B004B228B /* BiometricIDAuth.swift in Sources */,
 				18A074D72A247C1E004B228B /* SelectLangController.swift in Sources */,
 				181621AC2A20BEAC00CC3A8F /* SettingsController.swift in Sources */,

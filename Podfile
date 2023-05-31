@@ -14,6 +14,7 @@ target 'NewsApp' do
   pod 'Alamofire', '5.0.0-rc.2'
   pod 'AssistantKit'
 pod 'IQKeyboardManagerSwift'
+pod 'SwiftyJSON'
 
 
   # Pods for NewsApp

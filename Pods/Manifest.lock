@@ -10,6 +10,7 @@ PODS:
     - SDWebImage/Core (= 5.15.5)
   - SDWebImage/Core (5.15.5)
   - SVProgressHUD (2.2.5)
+  - SwiftyJSON (5.0.1)
 
 DEPENDENCIES:
   - Alamofire (= 5.0.0-rc.2)
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - NVActivityIndicatorView (~> 4.0.0)
   - SDWebImage
   - SVProgressHUD
+  - SwiftyJSON
 
 SPEC REPOS:
   trunk:
@@ -29,6 +31,7 @@ SPEC REPOS:
     - NVActivityIndicatorView
     - SDWebImage
     - SVProgressHUD
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: f9450d3c7f6bea2ad62e7a541c3e9b186c7991d6
@@ -38,7 +41,8 @@ SPEC CHECKSUMS:
   NVActivityIndicatorView: 77ed6d7b571643e24899e7858bf9ae2ee4c21f31
   SDWebImage: fd7e1a22f00303e058058278639bf6196ee431fe
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: 0596b0fb4f842588b780f138d5e2c60fef30684f
+PODFILE CHECKSUM: 17feee5c64ccf444c6a88d1600d0d97eb88283e0
 
 COCOAPODS: 1.12.0

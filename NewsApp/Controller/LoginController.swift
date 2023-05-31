@@ -33,7 +33,7 @@ class LoginController: BaseViewController {
             txtFldEmail.textAlignment = .left
             txtFldPassword.textAlignment = .left
             btnFingerprint.setTitle("Login with Fingerprint".localalizedString(str: "en"), for: .normal)
-            setupNavigationBar(title: "Login".localalizedString(str: "en"), img: "back", imgRight: "", isBackButton: false, isRightButton: false, isBackButtonItem: true, isRightButton2: false, imgRight2: "")
+            setupNavigationBar(title: "Login".localalizedString(str: "en"), img: "back", imgRight: "", isBackButton: false, isRightButton: false, isBackButtonItem: true, isRightButton2: false, imgRight2: "",leftButton2: false, leftButton2Img: "", isCountrySelected: false)
         } else {
             
             txtFldEmail.placeholder = "Email".localalizedString(str: "ar")
@@ -42,7 +42,7 @@ class LoginController: BaseViewController {
             txtFldEmail.textAlignment = .right
             txtFldPassword.textAlignment = .right
             btnFingerprint.setTitle("Login with Fingerprint".localalizedString(str: "ar"), for: .normal)
-            setupNavigationBar(title: "Login".localalizedString(str: "ar"), img: "back", imgRight: "", isBackButton: false, isRightButton: false, isBackButtonItem: true, isRightButton2: false, imgRight2: "")
+            setupNavigationBar(title: "Login".localalizedString(str: "ar"), img: "back", imgRight: "", isBackButton: false, isRightButton: false, isBackButtonItem: true, isRightButton2: false, imgRight2: "",leftButton2: false, leftButton2Img: "", isCountrySelected: false)
         }
         txtFldEmail.placeholderColor(color: UIColor.setColor(lightColor: #colorLiteral(red: 170/255, green: 170/255, blue: 170/255, alpha: 1), darkColor: #colorLiteral(red: 170/255, green: 170/255, blue: 170/255, alpha: 1)))
         txtFldPassword.placeholderColor(color: UIColor.setColor(lightColor: #colorLiteral(red: 170/255, green: 170/255, blue: 170/255, alpha: 1), darkColor: #colorLiteral(red: 170/255, green: 170/255, blue: 170/255, alpha: 1)))

@@ -13,6 +13,9 @@
         <array key="Montserrat-SemiBold.ttf">
             <string>Montserrat-SemiBold</string>
         </array>
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
     </customFonts>
     <scenes>
         <!--Login Controller-->
@@ -161,50 +164,59 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellNewsHome" rowHeight="120" id="9iA-pL-M6V" customClass="cellNewsHome" customModule="NewsApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="120"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cellNewsHome" rowHeight="280" id="9iA-pL-M6V" customClass="cellNewsHome" customModule="NewsApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="280"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9iA-pL-M6V" id="hCe-Ao-9iO">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="280"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hez-kJ-38k">
-                                                    <rect key="frame" x="10" y="5" width="373" height="115"/>
+                                                    <rect key="frame" x="10" y="10" width="373" height="260"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="news" translatesAutoresizingMaskIntoConstraints="NO" id="p6N-Rv-Foa">
-                                                            <rect key="frame" x="0.0" y="0.0" width="140" height="115"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="140" id="tau-a6-hOf"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="0.0" y="0.0" width="373" height="260"/>
                                                         </imageView>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wHJ-RN-abX">
+                                                            <rect key="frame" x="0.0" y="180" width="373" height="80"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="80" id="4ca-NC-ZgL"/>
+                                                            </constraints>
+                                                        </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsT-PT-5OR">
-                                                            <rect key="frame" x="155" y="9.9999999999999982" width="213" height="20.333333333333329"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                            <nil key="textColor"/>
+                                                            <rect key="frame" x="10" y="231.66666666666666" width="353" height="23.333333333333343"/>
+                                                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="20"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="trailing" secondItem="lsT-PT-5OR" secondAttribute="trailing" constant="5" id="3gY-54-g5K"/>
+                                                        <constraint firstAttribute="trailing" secondItem="p6N-Rv-Foa" secondAttribute="trailing" id="1Qr-Xd-161"/>
                                                         <constraint firstItem="p6N-Rv-Foa" firstAttribute="leading" secondItem="hez-kJ-38k" secondAttribute="leading" id="4u6-r5-bbu"/>
-                                                        <constraint firstItem="lsT-PT-5OR" firstAttribute="top" secondItem="hez-kJ-38k" secondAttribute="top" constant="10" id="BzV-8d-BSN"/>
+                                                        <constraint firstItem="lsT-PT-5OR" firstAttribute="leading" secondItem="hez-kJ-38k" secondAttribute="leading" constant="10" id="HGj-R9-gZD"/>
+                                                        <constraint firstAttribute="trailing" secondItem="wHJ-RN-abX" secondAttribute="trailing" id="ICE-Cq-GtB"/>
                                                         <constraint firstAttribute="bottom" secondItem="p6N-Rv-Foa" secondAttribute="bottom" id="Kx0-I6-doD"/>
+                                                        <constraint firstAttribute="bottom" secondItem="lsT-PT-5OR" secondAttribute="bottom" constant="5" id="NcO-py-iXa"/>
+                                                        <constraint firstItem="wHJ-RN-abX" firstAttribute="leading" secondItem="hez-kJ-38k" secondAttribute="leading" id="TQf-09-Aob"/>
                                                         <constraint firstItem="p6N-Rv-Foa" firstAttribute="top" secondItem="hez-kJ-38k" secondAttribute="top" id="Uov-vt-S6T"/>
-                                                        <constraint firstItem="lsT-PT-5OR" firstAttribute="leading" secondItem="p6N-Rv-Foa" secondAttribute="trailing" constant="15" id="cKU-S3-lve"/>
+                                                        <constraint firstAttribute="bottom" secondItem="wHJ-RN-abX" secondAttribute="bottom" id="a81-Sl-jrd"/>
+                                                        <constraint firstAttribute="trailing" secondItem="lsT-PT-5OR" secondAttribute="trailing" constant="10" id="bft-GM-cBp"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailing" secondItem="hez-kJ-38k" secondAttribute="trailing" constant="10" id="KYF-bj-BiG"/>
-                                                <constraint firstAttribute="bottom" secondItem="hez-kJ-38k" secondAttribute="bottom" id="Tcd-I4-ZHz"/>
+                                                <constraint firstAttribute="bottom" secondItem="hez-kJ-38k" secondAttribute="bottom" constant="10" id="Tcd-I4-ZHz"/>
                                                 <constraint firstItem="hez-kJ-38k" firstAttribute="leading" secondItem="hCe-Ao-9iO" secondAttribute="leading" constant="10" id="nhF-1H-82b"/>
-                                                <constraint firstItem="hez-kJ-38k" firstAttribute="top" secondItem="hCe-Ao-9iO" secondAttribute="top" constant="5" id="uRM-wB-y8J"/>
+                                                <constraint firstItem="hez-kJ-38k" firstAttribute="top" secondItem="hCe-Ao-9iO" secondAttribute="top" constant="10" id="uRM-wB-y8J"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="imgNews" destination="p6N-Rv-Foa" id="EoL-vY-XYP"/>
                                             <outlet property="lblTitle" destination="lsT-PT-5OR" id="iz9-sn-0HD"/>
+                                            <outlet property="viewBottomShadow" destination="wHJ-RN-abX" id="A8J-Qz-M3z"/>
                                             <outlet property="viewMain" destination="hez-kJ-38k" id="t8G-uD-Y9R"/>
                                         </connections>
                                     </tableViewCell>
