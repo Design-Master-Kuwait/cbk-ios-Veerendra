@@ -21,6 +21,8 @@ class HomeVC: BaseViewController {
     private let articles = ["All", "Business", "Entertainment", "General", "Health" ,"Science" ,"Sports", "Technology"]
     private var arrCountries = [countryNames]()
     private var isCountrySelected = false
+    private var status = ""
+    private var totalResults = 0
     var selected: String {
         return AppUserDefaults.string(forKey: "selectedNews") ?? ""
     }
@@ -41,7 +43,7 @@ class HomeVC: BaseViewController {
         pullControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         pullControl.addTarget(self, action: #selector(pulledRefreshControl(sender:)), for: UIControl.Event.valueChanged)
         tableview.addSubview(pullControl)
-        HomeNews_Api(page: Global.page, isRefresh: false, category: "", country: Global.country)
+        
         if self.traitCollection.userInterfaceStyle == .dark {
             ChangeStayusBarColor()
         } else {
@@ -53,6 +55,17 @@ class HomeVC: BaseViewController {
             setupNavigationBar(title: "Home", img: "", imgRight: "settings", isBackButton: false, isRightButton: true, isBackButtonItem: true, isRightButton2: true, imgRight2: "filterSelected",leftButton2: true, leftButton2Img: "countrySelected", isCountrySelected: true)
         } else {
             setupNavigationBar(title: "Home", img: "", imgRight: "settings", isBackButton: false, isRightButton: true, isBackButtonItem: true, isRightButton2: true, imgRight2: "filter",leftButton2: true, leftButton2Img: "country", isCountrySelected: true)
+        }
+        
+        if (InternetReachability.sharedInstance.isInternetAvailable()) {
+            HomeNews_Api(page: Global.page, isRefresh: false, category: "", country: Global.country)
+        } else {
+            for i in fetchArticleTableData(){
+                let src: HomeBaseMDL.HomeData.Source = HomeBaseMDL.HomeData.Source(id: i.sourceId, name: i.sourceName)
+                let arr = HomeBaseMDL.HomeData(source: src, author: i.author, title: i.title, description: i.description, url: i.url, urlToImage: i.urlToImage, publishedAt: i.publishedAt, content: i.content)
+                arrayNews.append(arr)
+            }
+            tableview.reloadData()
         }
         
         
@@ -75,10 +88,21 @@ class HomeVC: BaseViewController {
     
     // MARK: - Pull to refresh
     @objc func pulledRefreshControl(sender:AnyObject) {
-        HomeNews_Api(page: Global.page, isRefresh: true, category: Global.category, country: Global.country)
+        
+        if InternetReachability.sharedInstance.isInternetAvailable(){
+            HomeNews_Api(page: Global.page, isRefresh: true, category: Global.category, country: Global.country)
+            
+        }else {
+            for i in fetchArticleTableData(){
+                let src: HomeBaseMDL.HomeData.Source = HomeBaseMDL.HomeData.Source(id: i.sourceId, name: i.sourceName)
+                let arr = HomeBaseMDL.HomeData(source: src, author: i.author, title: i.title, description: i.description, url: i.url, urlToImage: i.urlToImage, publishedAt: i.publishedAt, content: i.content)
+                arrayNews.append(arr)
+            }
+            tableview.reloadData()
+        }
         self.pullControl.endRefreshing()
     }
-
+    
     // MARK: - Button's Action
     override func _handrightBackTapped2() {
         if let row = articles.firstIndex(of: selected) {
@@ -109,8 +133,12 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
         
         cell.imgNews.sd_setImage(with: URL(string: (arrayNews[indexPath.row].urlToImage) ?? ""), placeholderImage: UIImage(named: "news"))
         cell.lblTitle.text = arrayNews[indexPath.row].title
-        if indexPath.row == (arrayNews.count) - 1{
-            HomeNews_Api(page:Global.page, isRefresh: false, category: Global.category, country: Global.country)
+        if InternetReachability.sharedInstance.isInternetAvailable(){
+            if indexPath.row == (arrayNews.count) - 1{
+                HomeNews_Api(page:Global.page, isRefresh: false, category: Global.category, country: Global.country)
+            }
+        }else {
+            
         }
         
         return cell
@@ -156,34 +184,47 @@ extension HomeVC {
             if isRefresh{
                 arrayNews.removeAll()
             }
-            print((objHomeVM.HomeMdl?.articles!.count)!)
-            for i in objHomeVM.HomeMdl!.articles!{
-                self.arrayNews.append(i)
+            if objHomeVM.HomeMdl?.status == "ok" {
+                if let list = objHomeVM.HomeMdl?.articles {
+                    self.status = objHomeVM.HomeMdl?.status ?? ""
+                    self.totalResults = objHomeVM.HomeMdl?.totalResults ?? 0
+                    
+                    for i in objHomeVM.HomeMdl!.articles!{
+                        self.arrayNews.append(i)
+                    }
+                    
+                    // Save ArticleDetails in DB
+                    self.saveArticleTableData(arr: arrayNews)
+                }
+            } else {
+                print("Error", objHomeVM)
             }
             if isRefresh == false{
                 Global.page += 1
             }
+            
+            
             tableview.reloadData()
         }
     }
     
-        func COUNTRIES_DATA() {
-            if let url = Bundle.main.url(forResource: "countries", withExtension: "json") {
-                do {
-                    let data = try Data(contentsOf: url)
-                    let decoder = JSONDecoder()
-                    let jsonData = try decoder.decode([countryNames].self, from: data)
-                    print(jsonData)
-                    self.arrCountries = jsonData
-                    self.pickerView.reloadAllComponents()
-                } catch {
-                    print("error:\(error)")
-                }
+    func COUNTRIES_DATA() {
+        if let url = Bundle.main.url(forResource: "countries", withExtension: "json") {
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                let jsonData = try decoder.decode([countryNames].self, from: data)
+                print(jsonData)
+                self.arrCountries = jsonData
+                self.pickerView.reloadAllComponents()
+            } catch {
+                print("error:\(error)")
             }
         }
+    }
 }
 extension HomeVC: UIPickerViewDataSource, UIPickerViewDelegate {
-
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if isCountrySelected{
             return arrCountries.count
@@ -192,11 +233,11 @@ extension HomeVC: UIPickerViewDataSource, UIPickerViewDelegate {
         }
         
     }
-
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if isCountrySelected{
             return self.arrCountries[row].name
@@ -209,7 +250,7 @@ extension HomeVC: UIPickerViewDataSource, UIPickerViewDelegate {
 }
 
 extension HomeVC: ToolbarPickerViewDelegate {
-
+    
     func didTapDone() {
         if isCountrySelected{
             let row = self.pickerView.selectedRow(inComponent: 0)
@@ -222,7 +263,7 @@ extension HomeVC: ToolbarPickerViewDelegate {
             HomeNews_Api(page: 1, isRefresh: false, category: "", country: Global.country)
             tableview.reloadData()
             self.txtFld.resignFirstResponder()
-//            AppUserDefaults.set(true, forKey: "isFilterApplied")
+            //            AppUserDefaults.set(true, forKey: "isFilterApplied")
             setupNavigationBar(title: "Home", img: "", imgRight: "settings", isBackButton: false, isRightButton: true, isBackButtonItem: true, isRightButton2: true, imgRight2: "filterSelected", leftButton2: true, leftButton2Img: "countrySelected", isCountrySelected: true)
         }
         else
@@ -244,9 +285,24 @@ extension HomeVC: ToolbarPickerViewDelegate {
             setupNavigationBar(title: "Home", img: "", imgRight: "settings", isBackButton: false, isRightButton: true, isBackButtonItem: true, isRightButton2: true, imgRight2: "filterSelected", leftButton2: true, leftButton2Img: "countrySelected", isCountrySelected: true)
         }
     }
-
+    
     func didTapCancel() {
         self.txtFld.text = nil
         self.txtFld.resignFirstResponder()
+    }
+}
+extension HomeVC {
+    // Save Partner List Into Local DB
+    func saveArticleTableData(arr: [HomeBaseMDL.HomeData]) {
+//        deletePartnertableData()
+        var pIncr: Int  = 0
+        
+        let articleDataList = arr
+        if articleDataList.count > 0 {
+            for articleDetails in articleDataList {
+                pIncr += 1
+                saveArticleData(id:  getTrackingId(screenName: "\(pIncr)"), sourceId: articleDetails.source?.id ?? "", status: self.status, totalResults: self.totalResults ,sourceName: articleDetails.source?.name ?? "", author: articleDetails.author ?? "", title: articleDetails.title ?? "", Description: articleDetails.description ?? "", url: articleDetails.url ?? "", urlToImage: articleDetails.urlToImage ?? "", publishedAt: articleDetails.publishedAt ?? "", content: articleDetails.content ?? "")
+            }
+        }
     }
 }

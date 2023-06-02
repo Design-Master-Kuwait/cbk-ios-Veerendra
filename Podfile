@@ -15,6 +15,7 @@ target 'NewsApp' do
   pod 'AssistantKit'
 pod 'IQKeyboardManagerSwift'
 pod 'SwiftyJSON'
+pod 'RealmSwift'
 
 
   # Pods for NewsApp
