@@ -6,6 +6,11 @@ PODS:
   - NVActivityIndicatorView (4.0.1):
     - NVActivityIndicatorView/Presenter (= 4.0.1)
   - NVActivityIndicatorView/Presenter (4.0.1)
+  - Realm (10.37.0):
+    - Realm/Headers (= 10.37.0)
+  - Realm/Headers (10.37.0)
+  - RealmSwift (10.37.0):
+    - Realm (= 10.37.0)
   - SDWebImage (5.15.5):
     - SDWebImage/Core (= 5.15.5)
   - SDWebImage/Core (5.15.5)
@@ -18,6 +23,7 @@ DEPENDENCIES:
   - DropDown
   - IQKeyboardManagerSwift
   - NVActivityIndicatorView (~> 4.0.0)
+  - RealmSwift
   - SDWebImage
   - SVProgressHUD
   - SwiftyJSON
@@ -29,6 +35,8 @@ SPEC REPOS:
     - DropDown
     - IQKeyboardManagerSwift
     - NVActivityIndicatorView
+    - Realm
+    - RealmSwift
     - SDWebImage
     - SVProgressHUD
     - SwiftyJSON
@@ -39,10 +47,12 @@ SPEC CHECKSUMS:
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
   IQKeyboardManagerSwift: c7955c0bdbf7b2eb29bb7daaa44e3d90f55a9a85
   NVActivityIndicatorView: 77ed6d7b571643e24899e7858bf9ae2ee4c21f31
+  Realm: 9c5fc6f8f5cb70b299f2e3064d2b9f6cb0f1523d
+  RealmSwift: 7be7bb45911c16400dd1bfce3a01764ecb4cae7a
   SDWebImage: fd7e1a22f00303e058058278639bf6196ee431fe
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: 11a5d96973f63c621ceee0d531e0a3adf16f7f7c
+PODFILE CHECKSUM: d4215c1e72e5267e67111bd40c762d020ed4cc8f
 
 COCOAPODS: 1.12.0
