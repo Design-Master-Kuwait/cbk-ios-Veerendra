@@ -10,6 +10,7 @@ import SDWebImage
 import CoreData
 import SwiftyJSON
 
+
 class HomeVC: BaseViewController {
     
     @IBOutlet weak var tableview: UITableView!
@@ -23,6 +24,7 @@ class HomeVC: BaseViewController {
     private var isCountrySelected = false
     private var status = ""
     private var totalResults = 0
+    var isLoaded = false
     var selected: String {
         return AppUserDefaults.string(forKey: "selectedNews") ?? ""
     }
@@ -35,6 +37,7 @@ class HomeVC: BaseViewController {
         
     }
     override func viewWillAppear(_ animated: Bool) {
+        self.isLoaded = false
         setupUI()
     }
     //MARK: - Update UI
@@ -65,6 +68,7 @@ class HomeVC: BaseViewController {
                 let arr = HomeBaseMDL.HomeData(source: src, author: i.author, title: i.title, description: i.description, url: i.url, urlToImage: i.urlToImage, publishedAt: i.publishedAt, content: i.content)
                 arrayNews.append(arr)
             }
+            self.isLoaded = true
             tableview.reloadData()
         }
         
@@ -124,24 +128,43 @@ class HomeVC: BaseViewController {
 }
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrayNews.count
+        var count = 0
+        if self.isLoaded{
+            count = arrayNews.count
+        }else{
+            count = 10
+        }
+        return count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellNewsHome") as! cellNewsHome? else {
             fatalError()
         }
-        
-        cell.imgNews.sd_setImage(with: URL(string: (arrayNews[indexPath.row].urlToImage) ?? ""), placeholderImage: UIImage(named: "news"))
-        cell.lblTitle.text = arrayNews[indexPath.row].title
-        if InternetReachability.sharedInstance.isInternetAvailable(){
-            if indexPath.row == (arrayNews.count) - 1{
-                HomeNews_Api(page:Global.page, isRefresh: false, category: Global.category, country: Global.country)
+        if self.isLoaded{
+            cell.hideSkeleton()
+            cell.imgNews.sd_setImage(with: URL(string: (arrayNews[indexPath.row].urlToImage) ?? ""), placeholderImage: UIImage(named: "news"))
+            cell.lblTitle.text = arrayNews[indexPath.row].title
+            if InternetReachability.sharedInstance.isInternetAvailable(){
+                if indexPath.row == (arrayNews.count) - 1{
+                    HomeNews_Api(page:Global.page, isRefresh: false, category: Global.category, country: Global.country)
+                }
+            }else {
+                
             }
-        }else {
             
+        } else {
+            cell.showAniamtion()
         }
-        
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let news = NewsStruct(title: arrayNews[indexPath.row].title ?? "", desc: arrayNews[indexPath.row].description ?? "", img: arrayNews[indexPath.row].urlToImage ?? "")
+        do {
+            try AppUserDefaults.setObject(news, forKey: "NewsObject")
+            pushToViewController(sb_Id: "HomeDetailsController")
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 250
@@ -171,6 +194,20 @@ class cellNewsHome: UITableViewCell {
         viewBottomShadow.clipsToBounds = true
         
     }
+    
+    func showAniamtion() {
+        imgNews.showAnimatedSkeleton()
+        lblTitle.showGradientSkeleton()
+        viewMain.showAnimatedSkeleton()
+        viewBottomShadow.showAnimatedSkeleton()
+    }
+    
+    func hideAnimation() {
+        imgNews.hideSkeleton()
+        lblTitle.hideSkeleton()
+        viewMain.hideSkeleton()
+        lblTitle.hideSkeleton()
+    }
 }
 
 //MARK: - Api Integration
@@ -192,7 +229,7 @@ extension HomeVC {
                     for i in objHomeVM.HomeMdl!.articles!{
                         self.arrayNews.append(i)
                     }
-                    
+                    self.isLoaded = true
                     // Save ArticleDetails in DB
                     self.saveArticleTableData(arr: arrayNews)
                 }
@@ -295,6 +332,7 @@ extension HomeVC {
     // Save Partner List Into Local DB
     func saveArticleTableData(arr: [HomeBaseMDL.HomeData]) {
 //        deletePartnertableData()
+        
         var pIncr: Int  = 0
         
         let articleDataList = arr

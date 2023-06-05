@@ -38,10 +38,10 @@
 		18A074E22A24CD9B004B228B /* HomeBaseMDL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A074E12A24CD9B004B228B /* HomeBaseMDL.swift */; };
 		18A074E82A274A16004B228B /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 18A074E72A274A15004B228B /* countries.json */; };
 		18A074EA2A274D83004B228B /* CountryMDL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A074E92A274D83004B228B /* CountryMDL.swift */; };
-		18A075F72A29EB60004B228B /* HomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A075F62A29EB60004B228B /* HomeTests.swift */; };
 		18A075FE2A29F07E004B228B /* BaseFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A075FB2A29F07E004B228B /* BaseFile.swift */; };
 		18A075FF2A29F07E004B228B /* DBOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A075FC2A29F07E004B228B /* DBOperation.swift */; };
 		18A076002A29F07E004B228B /* ArticleTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A075FD2A29F07E004B228B /* ArticleTable.swift */; };
+		18A076022A2DBF42004B228B /* HomeDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A076012A2DBF42004B228B /* HomeDetailsController.swift */; };
 		18D4D6732A2090900048EC23 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4D6722A2090900048EC23 /* HomeVC.swift */; };
 		18D4D67A2A20A8030048EC23 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D4D6792A20A8030048EC23 /* BaseViewController.swift */; };
 		C645D36F0703A0EF7944BC2A /* Pods_NewsApp_NewsAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0115566EE9F17059FDC9BF18 /* Pods_NewsApp_NewsAppUITests.framework */; };
@@ -107,10 +107,10 @@
 		18A074E12A24CD9B004B228B /* HomeBaseMDL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBaseMDL.swift; sourceTree = "<group>"; };
 		18A074E72A274A15004B228B /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		18A074E92A274D83004B228B /* CountryMDL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryMDL.swift; sourceTree = "<group>"; };
-		18A075F62A29EB60004B228B /* HomeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTests.swift; sourceTree = "<group>"; };
 		18A075FB2A29F07E004B228B /* BaseFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseFile.swift; sourceTree = "<group>"; };
 		18A075FC2A29F07E004B228B /* DBOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBOperation.swift; sourceTree = "<group>"; };
 		18A075FD2A29F07E004B228B /* ArticleTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTable.swift; sourceTree = "<group>"; };
+		18A076012A2DBF42004B228B /* HomeDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailsController.swift; sourceTree = "<group>"; };
 		18D4D6722A2090900048EC23 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		18D4D6792A20A8030048EC23 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		224B688CAF29D4CF927B22F7 /* Pods_NewsApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewsApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -289,7 +289,7 @@
 				18A074D62A247C1E004B228B /* SelectLangController.swift */,
 				1828AC4B2A1F81A1004D7E38 /* LoginController.swift */,
 				18D4D6722A2090900048EC23 /* HomeVC.swift */,
-				18A075F62A29EB60004B228B /* HomeTests.swift */,
+				18A076012A2DBF42004B228B /* HomeDetailsController.swift */,
 				181621AB2A20BEAC00CC3A8F /* SettingsController.swift */,
 			);
 			path = Controller;
@@ -578,6 +578,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1828AC232A1F6FA4004D7E38 /* Extensions.swift in Sources */,
+				18A076022A2DBF42004B228B /* HomeDetailsController.swift in Sources */,
 				1828AE4B2A1F8438004D7E38 /* BaseFunction.swift in Sources */,
 				1828AB962A1F6EB8004D7E38 /* AppDelegate.swift in Sources */,
 				18A074E22A24CD9B004B228B /* HomeBaseMDL.swift in Sources */,
@@ -611,7 +612,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18A075F72A29EB60004B228B /* HomeTests.swift in Sources */,
 				1828ABB02A1F6EB9004D7E38 /* NewsAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

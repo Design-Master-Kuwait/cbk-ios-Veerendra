@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class SelectLangController: BaseViewController {
     
@@ -17,7 +18,6 @@ class SelectLangController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
         // Do any additional setup after loading the view.
     }

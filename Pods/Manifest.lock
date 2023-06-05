@@ -14,6 +14,7 @@ PODS:
   - SDWebImage (5.15.5):
     - SDWebImage/Core (= 5.15.5)
   - SDWebImage/Core (5.15.5)
+  - SkeletonView (1.30.4)
   - SVProgressHUD (2.2.5)
   - SwiftyJSON (5.0.1)
 
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - NVActivityIndicatorView (~> 4.0.0)
   - RealmSwift
   - SDWebImage
+  - SkeletonView
   - SVProgressHUD
   - SwiftyJSON
 
@@ -38,6 +40,7 @@ SPEC REPOS:
     - Realm
     - RealmSwift
     - SDWebImage
+    - SkeletonView
     - SVProgressHUD
     - SwiftyJSON
 
@@ -50,9 +53,10 @@ SPEC CHECKSUMS:
   Realm: 9c5fc6f8f5cb70b299f2e3064d2b9f6cb0f1523d
   RealmSwift: 7be7bb45911c16400dd1bfce3a01764ecb4cae7a
   SDWebImage: fd7e1a22f00303e058058278639bf6196ee431fe
+  SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
 
-PODFILE CHECKSUM: d4215c1e72e5267e67111bd40c762d020ed4cc8f
+PODFILE CHECKSUM: eddd08994eac5c031e010d04c6d64783a773d287
 
 COCOAPODS: 1.12.0

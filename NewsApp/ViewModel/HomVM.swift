@@ -12,7 +12,6 @@ class HomeVM {
 
         var HomeMdl : HomeBaseMDL?
     
-         var window: UIWindow?
     
     func hitHomeMethod(request : Home.Request,viewCont : UIViewController,completion:@escaping() -> Void){
         
