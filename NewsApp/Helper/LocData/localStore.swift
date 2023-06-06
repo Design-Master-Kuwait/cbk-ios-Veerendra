@@ -7,8 +7,6 @@ class LocalStore {
     
     // Shared instance
     static let shared = LocalStore()
-    //  User defaults keys
-    private let accessToken = "accessToken"
     // Auth Session Access Token
     var engTrueArabicFalse: Bool!
     {

@@ -14,16 +14,17 @@ class SettingsController: BaseViewController {
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var textField: UITextField!
     
-    var arr = [String]()
-    var arrUpdated = [String]()
-    var arrArabic = [String]()
-    var arrUpdatedArabic = [String]()
-    var getEmail:String!
-    var getPass:String!
-    var isCredentialsTrue = false
+    private var arr = [String]()
+    private var arrUpdated = [String]()
+    private var arrArabic = [String]()
+    private var arrUpdatedArabic = [String]()
+    private var getEmail:String!
+    private var getPass:String!
+    private var isCredentialsTrue = false
+    private var isLoaded = false
     private let biometricIDAuth = BiometricIDAuth()
     private let pickerView = ToolbarPickerView()
-    let languages = ["English", "Arabic"]
+    private let languages = ["English", "Arabic"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,10 @@ class SettingsController: BaseViewController {
     //MARK: - Update UI
     private func setupUI() {
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.isLoaded = true
+            self.tableview.reloadData()
+        }
         if LocalStore.shared.engTrueArabicFalse {
             arr = ["My Profile".localalizedString(str: "en"), "Change Language".localalizedString(str: "en"), "Switch to Dark Mode".localalizedString(str: "en"), "Enable Fingerprint".localalizedString(str: "en"), "Logout".localalizedString(str: "en")]
             arrUpdated = ["My Profile".localalizedString(str: "en"), "Change Language".localalizedString(str: "en"), "Switch to Dark Mode".localalizedString(str: "en"), "Logout".localalizedString(str: "en")]
@@ -72,6 +77,9 @@ class SettingsController: BaseViewController {
         
         let alert = UIAlertController(title: APPNAME, message: "Are you sure you want to logout.", preferredStyle: .alert)
         let action = UIAlertAction(title: "Yes", style: .default, handler: {(action) -> Void in
+            
+                // MARK: - Delete Data from Local DB
+            deletePartnertableData()
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "LoginController") as! LoginController
             self.navigationController?.pushViewController(vc, animated: true)
         })
@@ -112,53 +120,58 @@ extension SettingsController: UITableViewDelegate, UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cellSettings") as! cellSettings? else {
             fatalError()
         }
-        if isCredentialsTrue{
-            cell.lblTitle.text = arrUpdated[indexPath.row]
-            cell.imgTitle.image = UIImage(named: arrUpdated[indexPath.row].localalizedString(str: "en"))
-        } else {
-            cell.lblTitle.text = arr[indexPath.row]
-            cell.imgTitle.image = UIImage(named: arr[indexPath.row].localalizedString(str: "en"))
-        }
-        
-        let isDark = AppUserDefaults.bool(forKey: "isDark")
-        if isDark{
-            cell.switchButton.isOn = isDark
-        }else {
-            cell.switchButton.isOn = isDark
-        }
-        
-        let engTrueArabicFalse = AppUserDefaults.bool(forKey: "engTrueArabicFalse")
-        if engTrueArabicFalse{
-            cell.lblLangaugeChange.text = "English"
+        if self.isLoaded{
+            cell.hideAnimation()
             if isCredentialsTrue{
                 cell.lblTitle.text = arrUpdated[indexPath.row]
-                cell.imgTitle.image = UIImage(named: arrUpdated[indexPath.row].localalizedString(str: "ar"))
+                cell.imgTitle.image = UIImage(named: arrUpdated[indexPath.row].localalizedString(str: "en"))
             } else {
                 cell.lblTitle.text = arr[indexPath.row]
-                cell.imgTitle.image = UIImage(named: arr[indexPath.row].localalizedString(str: "ar"))
+                cell.imgTitle.image = UIImage(named: arr[indexPath.row].localalizedString(str: "en"))
             }
-        }
-        else
-        {
-            cell.lblLangaugeChange.text = "عربي"
-            if isCredentialsTrue{
-                cell.lblTitle.text = arrUpdated[indexPath.row]
-                cell.imgTitle.image = UIImage(named: arrUpdated[indexPath.row])
+            
+            let isDark = AppUserDefaults.bool(forKey: "isDark")
+            if isDark{
+                cell.switchButton.isOn = isDark
+            }else {
+                cell.switchButton.isOn = isDark
+            }
+            
+            let engTrueArabicFalse = AppUserDefaults.bool(forKey: "engTrueArabicFalse")
+            if engTrueArabicFalse{
+                cell.lblLangaugeChange.text = "English"
+                if isCredentialsTrue{
+                    cell.lblTitle.text = arrUpdated[indexPath.row]
+                    cell.imgTitle.image = UIImage(named: arrUpdated[indexPath.row].localalizedString(str: "ar"))
+                } else {
+                    cell.lblTitle.text = arr[indexPath.row]
+                    cell.imgTitle.image = UIImage(named: arr[indexPath.row].localalizedString(str: "ar"))
+                }
+            }
+            else
+            {
+                cell.lblLangaugeChange.text = "عربي"
+                if isCredentialsTrue{
+                    cell.lblTitle.text = arrUpdated[indexPath.row]
+                    cell.imgTitle.image = UIImage(named: arrUpdated[indexPath.row])
+                } else {
+                    cell.lblTitle.text = arr[indexPath.row]
+                    cell.imgTitle.image = UIImage(named: arr[indexPath.row])
+                }
+            }
+            if indexPath.row == 1{
+                cell.stackview.isHidden = false
+                cell.switchButton.isHidden = true
+                cell.lblLangaugeChange.isHidden = false
+            } else if indexPath.row == 2{
+                cell.stackview.isHidden = false
+                cell.switchButton.isHidden = false
+                cell.lblLangaugeChange.isHidden = true
             } else {
-                cell.lblTitle.text = arr[indexPath.row]
-                cell.imgTitle.image = UIImage(named: arr[indexPath.row])
+                cell.stackview.isHidden = true
             }
-        }
-        if indexPath.row == 1{
-            cell.stackview.isHidden = false
-            cell.switchButton.isHidden = true
-            cell.lblLangaugeChange.isHidden = false
-        } else if indexPath.row == 2{
-            cell.stackview.isHidden = false
-            cell.switchButton.isHidden = false
-            cell.lblLangaugeChange.isHidden = true
         } else {
-            cell.stackview.isHidden = true
+            cell.showAniamtion()
         }
         
         return cell
@@ -234,6 +247,23 @@ class cellSettings: UITableViewCell {
     @IBOutlet weak var stackview: UIStackView!
     @IBOutlet weak var lblLangaugeChange: UILabel!
     @IBOutlet weak var switchButton: UISwitch!
+    
+    
+    func showAniamtion() {
+        lblTitle.showAnimatedSkeleton()
+        imgTitle.showGradientSkeleton()
+        stackview.showAnimatedSkeleton()
+        lblLangaugeChange.showAnimatedSkeleton()
+        switchButton.showAnimatedSkeleton()
+    }
+    
+    func hideAnimation() {
+        lblTitle.hideSkeleton()
+        imgTitle.hideSkeleton()
+        stackview.hideSkeleton()
+        lblLangaugeChange.hideSkeleton()
+        switchButton.hideSkeleton()
+    }
 }
 extension SettingsController: UIPickerViewDataSource, UIPickerViewDelegate {
 

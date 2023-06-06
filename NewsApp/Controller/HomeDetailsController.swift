@@ -13,7 +13,7 @@ protocol ObjectSavable {
     func getObject<Object>(forKey: String, castTo type: Object.Type) throws -> Object where Object: Decodable
 }
 
-class HomeDetailsController: UIViewController {
+class HomeDetailsController: BaseViewController {
     
     @IBOutlet weak var tableview: UITableView!
     var arrayDetails = [NewsStruct]()
@@ -21,6 +21,19 @@ class HomeDetailsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        SetupUI()
+    }
+    
+    
+    // MARK: - SetupUI and Other things
+    func SetupUI() {
+        
+        if LocalStore.shared.engTrueArabicFalse {
+            setupNavigationBar(title: "Details".localalizedString(str: "en"), img: "back", imgRight: "", isBackButton: true, isRightButton: false, isBackButtonItem: false, isRightButton2: false, imgRight2: "",leftButton2: false, leftButton2Img: "", isCountrySelected: false)
+        } else {
+            setupNavigationBar(title: "Details".localalizedString(str: "ar"), img: "back", imgRight: "", isBackButton: true, isRightButton: false, isBackButtonItem: false, isRightButton2: false, imgRight2: "",leftButton2: false, leftButton2Img: "", isCountrySelected: false)
+        }
+        
         pullControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
         pullControl.addTarget(self, action: #selector(pulledRefreshControl(sender:)), for: UIControl.Event.valueChanged)
         tableview.addSubview(pullControl)
@@ -33,6 +46,11 @@ class HomeDetailsController: UIViewController {
             print(error.localizedDescription)
         }
         
+        if self.traitCollection.userInterfaceStyle == .dark {
+            ChangeStayusBarColor()
+        } else {
+            ChangeStayusBarColorWhite()
+        }
     }
     
     // MARK: - Pull to refresh
@@ -68,38 +86,7 @@ extension HomeDetailsController: UITableViewDelegate, UITableViewDataSource {
     
     
 }
-extension UserDefaults: ObjectSavable {
-    func setObject<Object>(_ object: Object, forKey: String) throws where Object: Encodable {
-        let encoder = JSONEncoder()
-        do {
-            let data = try encoder.encode(object)
-            set(data, forKey: forKey)
-        } catch {
-            throw ObjectSavableError.unableToEncode
-        }
-    }
-    
-    func getObject<Object>(forKey: String, castTo type: Object.Type) throws -> Object where Object: Decodable {
-        guard let data = data(forKey: forKey) else { throw ObjectSavableError.noValue }
-        let decoder = JSONDecoder()
-        do {
-            let object = try decoder.decode(type, from: data)
-            return object
-        } catch {
-            throw ObjectSavableError.unableToDecode
-        }
-    }
-}
 
-enum ObjectSavableError: String, LocalizedError {
-    case unableToEncode = "Unable to encode object into data"
-    case noValue = "No data object found for the given key"
-    case unableToDecode = "Unable to decode object into given type"
-    
-    var errorDescription: String? {
-        rawValue
-    }
-}
 struct NewsStruct: Codable {
     var title: String
     var desc: String

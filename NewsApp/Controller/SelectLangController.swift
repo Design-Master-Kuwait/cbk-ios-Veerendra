@@ -23,6 +23,17 @@ class SelectLangController: BaseViewController {
     }
     //MARK: - SETUP UI
     func setupUI() {
+        DispatchQueue.main.async {
+            self.lblChoose.showGradientSkeleton()
+            self.viewEnglish.showGradientSkeleton()
+            self.viewArabic.showGradientSkeleton()
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.lblChoose.hideSkeleton()
+            self.viewEnglish.hideSkeleton()
+            self.viewArabic.hideSkeleton()
+        }
+        
         if LocalStore.shared.engTrueArabicFalse {
             lblChoose.text = "Choose Language".localalizedString(str: "en")
             setupNavigationBar(title: "Language".localalizedString(str: "en"), img: "", imgRight: "", isBackButton: false, isRightButton: false, isBackButtonItem: false, isRightButton2: false, imgRight2: "",leftButton2: false, leftButton2Img: "", isCountrySelected: false)

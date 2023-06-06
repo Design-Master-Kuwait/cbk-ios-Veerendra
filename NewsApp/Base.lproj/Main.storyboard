@@ -23,7 +23,7 @@
             <objects>
                 <viewController storyboardIdentifier="LoginController" id="BYZ-38-t0r" customClass="LoginController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EDt-qa-Mn1">
@@ -40,6 +40,9 @@
                                                         <color key="backgroundColor" name="TextFields Color"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" name="TextFields Color"/>
@@ -50,6 +53,9 @@
                                                     <constraint firstAttribute="trailing" secondItem="W9E-wH-tVC" secondAttribute="trailing" constant="5" id="bBT-j9-hNC"/>
                                                     <constraint firstItem="W9E-wH-tVC" firstAttribute="top" secondItem="CeW-NL-iTl" secondAttribute="top" constant="5" id="snt-79-3Vy"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AoU-Bi-CFB">
                                                 <rect key="frame" x="35" y="245" width="323" height="45"/>
@@ -60,6 +66,9 @@
                                                         <color key="textColor" name="Screen Back Color"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
                                                     </textField>
                                                 </subviews>
                                                 <color key="backgroundColor" name="TextFields Color"/>
@@ -70,6 +79,9 @@
                                                     <constraint firstAttribute="bottom" secondItem="RTi-JJ-HFL" secondAttribute="bottom" constant="5" id="geB-qd-fhK"/>
                                                     <constraint firstAttribute="height" constant="45" id="jcv-6t-Zhs"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1R-d0-Iaj">
                                                 <rect key="frame" x="96.666666666666686" y="320" width="200" height="45"/>
@@ -82,19 +94,11 @@
                                                 <state key="normal" title="Login">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="btnLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AUv-ML-L3F"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1jS-aL-vp0">
-                                                <rect key="frame" x="116" y="380" width="161" height="30"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="Login with Fingerprint">
-                                                    <color key="titleColor" name="Black Color"/>
-                                                </state>
-                                                <connections>
-                                                    <action selector="btnFingerprint:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lni-NH-G3g"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -107,10 +111,11 @@
                                             <constraint firstAttribute="trailing" secondItem="CeW-NL-iTl" secondAttribute="trailing" constant="35" id="DuB-1o-EVP"/>
                                             <constraint firstItem="AoU-Bi-CFB" firstAttribute="top" secondItem="CeW-NL-iTl" secondAttribute="bottom" constant="20" id="KKP-kn-GFN"/>
                                             <constraint firstItem="g1R-d0-Iaj" firstAttribute="top" secondItem="AoU-Bi-CFB" secondAttribute="bottom" constant="30" id="Xm3-yd-LwA"/>
-                                            <constraint firstItem="1jS-aL-vp0" firstAttribute="top" secondItem="g1R-d0-Iaj" secondAttribute="bottom" constant="15" id="dsr-Tl-3Sd"/>
-                                            <constraint firstItem="1jS-aL-vp0" firstAttribute="centerX" secondItem="wrD-GE-0qF" secondAttribute="centerX" id="jR3-FF-5YG"/>
                                             <constraint firstItem="g1R-d0-Iaj" firstAttribute="centerX" secondItem="wrD-GE-0qF" secondAttribute="centerX" id="zcn-Js-SBP"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
                                 <constraints>
@@ -121,6 +126,9 @@
                                     <constraint firstItem="wrD-GE-0qF" firstAttribute="centerX" secondItem="EDt-qa-Mn1" secondAttribute="centerX" id="x4w-YD-UbZ"/>
                                     <constraint firstAttribute="trailing" secondItem="wrD-GE-0qF" secondAttribute="trailing" id="yea-S9-Aqt"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -131,10 +139,12 @@
                             <constraint firstItem="EDt-qa-Mn1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vZQ-I8-c4i"/>
                             <constraint firstItem="EDt-qa-Mn1" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="xZo-yt-OCQ"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <navigationItem key="navigationItem" id="t4d-Cs-nh3"/>
                     <connections>
-                        <outlet property="btnFingerprint" destination="1jS-aL-vp0" id="WpE-JC-Aws"/>
                         <outlet property="btnLogin" destination="g1R-d0-Iaj" id="4Q6-8x-5XO"/>
                         <outlet property="txtFldEmail" destination="W9E-wH-tVC" id="B19-qf-B9F"/>
                         <outlet property="txtFldPassword" destination="RTi-JJ-HFL" id="cdv-gK-dl8"/>
@@ -151,7 +161,7 @@
             <objects>
                 <viewController storyboardIdentifier="HomeVC" id="z5D-Ri-xbw" customClass="HomeVC" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5am-0n-FUQ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="GVq-Qj-jyk">
@@ -282,7 +292,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BEP-nB-2Ax" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="96l-NY-T3c">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -299,7 +309,7 @@
             <objects>
                 <viewController storyboardIdentifier="SettingsController" id="UvZ-6D-EN4" customClass="SettingsController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PW0-K6-WNv">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="QQA-90-W1x">
@@ -328,12 +338,21 @@
                                                                 <constraint firstAttribute="height" constant="20" id="EAb-WK-dQY"/>
                                                                 <constraint firstAttribute="width" constant="20" id="zS3-uB-qaC"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDS-9r-BWJ">
                                                             <rect key="frame" x="45" y="17" width="41.333333333333343" height="20.333333333333329"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" name="Labels Color"/>
                                                             <nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="lastLineFillPercent">
+                                                                    <integer key="value" value="100"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="v2K-uq-mLY">
                                                             <rect key="frame" x="305" y="11.666666666666664" width="73" height="31"/>
@@ -343,14 +362,23 @@
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <color key="textColor" name="Labels Color"/>
                                                                     <nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HPF-R8-i7E">
                                                                     <rect key="frame" x="24" y="0.0" width="51" height="31"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                     <connections>
                                                                         <action selector="btnSwitchDark:" destination="UvZ-6D-EN4" eventType="touchUpInside" id="SOD-rg-lgJ"/>
                                                                     </connections>
                                                                 </switch>
                                                             </subviews>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </stackView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w6b-Ia-OHb">
                                                             <rect key="frame" x="15" y="53.666666666666664" width="363" height="0.3333333333333357"/>
@@ -358,6 +386,9 @@
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="0.5" id="eI6-8w-FwH"/>
                                                             </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -372,6 +403,9 @@
                                                         <constraint firstItem="vzK-Fp-2Vl" firstAttribute="leading" secondItem="vUa-Uq-Osu" secondAttribute="leading" constant="15" id="m61-AS-2TI"/>
                                                         <constraint firstItem="w6b-Ia-OHb" firstAttribute="leading" secondItem="vUa-Uq-Osu" secondAttribute="leading" constant="15" id="oYV-9t-uxY"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
                                             <constraints>
@@ -380,7 +414,13 @@
                                                 <constraint firstItem="vUa-Uq-Osu" firstAttribute="leading" secondItem="j6S-2U-ByH" secondAttribute="leading" id="JyQ-md-NFi"/>
                                                 <constraint firstItem="vUa-Uq-Osu" firstAttribute="top" secondItem="j6S-2U-ByH" secondAttribute="top" id="d91-2o-Rlo"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </tableViewCellContentView>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="imgTitle" destination="vzK-Fp-2Vl" id="J6D-nT-Gdm"/>
                                             <outlet property="lblLangaugeChange" destination="DVc-Nl-x0Z" id="uwx-Mu-8ie"/>
@@ -390,6 +430,9 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="dataSource" destination="UvZ-6D-EN4" id="SKA-00-9ga"/>
                                     <outlet property="delegate" destination="UvZ-6D-EN4" id="rOs-Sh-agR"/>
@@ -404,6 +447,9 @@
                             <constraint firstItem="TUS-EX-6yj" firstAttribute="bottom" secondItem="etc-ac-ah6" secondAttribute="bottom" id="Ut0-on-htv"/>
                             <constraint firstItem="etc-ac-ah6" firstAttribute="top" secondItem="TUS-EX-6yj" secondAttribute="top" id="oZ2-Z2-lLN"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </view>
                     <navigationItem key="navigationItem" id="Z6u-8R-00u"/>
                     <connections>
@@ -420,7 +466,7 @@
             <objects>
                 <viewController storyboardIdentifier="SelectLangController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="d8n-7l-zO4" customClass="SelectLangController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="HkB-4P-WSC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="99J-Fk-muG">
@@ -434,6 +480,9 @@
                                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="useFontLineHeight" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IPK-xp-Uxt">
                                                 <rect key="frame" x="0.0" y="0.0" width="313" height="50"/>
@@ -461,6 +510,10 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bcy-qI-gVI">
@@ -471,6 +524,9 @@
                                                 <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0XZ-j7-xMP">
                                                 <rect key="frame" x="0.0" y="0.0" width="313" height="50"/>
@@ -479,6 +535,9 @@
                                                 <state key="normal" title="          ">
                                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="btnArabic:" destination="d8n-7l-zO4" eventType="touchUpInside" id="dJX-kR-ZPT"/>
                                                 </connections>
@@ -498,6 +557,10 @@
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                 <integer key="value" value="20"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                 </subviews>
@@ -512,7 +575,7 @@
                                 <nil key="highlightedColor"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
-                                        <real key="value" value="5"/>
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="linesCornerRadius">
                                         <integer key="value" value="5"/>
@@ -520,6 +583,7 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="lastLineFillPercent">
                                         <integer key="value" value="100"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
@@ -550,7 +614,7 @@
             <objects>
                 <viewController storyboardIdentifier="HomeDetailsController" id="fBi-2M-2xe" customClass="HomeDetailsController" customModule="NewsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="scaleToFill" id="reF-Gp-H2y">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Cxy-Qx-OEt">
@@ -579,9 +643,9 @@
                                                                         <constraint firstAttribute="height" constant="100" id="CAj-Ed-tkp"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Language" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tm5-th-1Iy">
-                                                                    <rect key="frame" x="10" y="241" width="373" height="24"/>
-                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Language" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tm5-th-1Iy">
+                                                                    <rect key="frame" x="10" y="238.66666666666666" width="373" height="26.333333333333343"/>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -601,9 +665,9 @@
                                                                 <constraint firstAttribute="height" constant="270" id="q6x-wE-3Ae"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desctription" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJ4-Rf-YyU">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Desctription" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJ4-Rf-YyU">
                                                             <rect key="frame" x="10" y="280" width="373" height="30"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                             <color key="textColor" name="Labels Color"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>

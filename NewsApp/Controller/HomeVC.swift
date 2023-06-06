@@ -37,7 +37,7 @@ class HomeVC: BaseViewController {
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.isLoaded = false
+//        self.isLoaded = false
         setupUI()
     }
     //MARK: - Update UI
@@ -222,16 +222,20 @@ extension HomeVC {
                 arrayNews.removeAll()
             }
             if objHomeVM.HomeMdl?.status == "ok" {
-                if let list = objHomeVM.HomeMdl?.articles {
-                    self.status = objHomeVM.HomeMdl?.status ?? ""
-                    self.totalResults = objHomeVM.HomeMdl?.totalResults ?? 0
-                    
-                    for i in objHomeVM.HomeMdl!.articles!{
-                        self.arrayNews.append(i)
-                    }
-                    self.isLoaded = true
-                    // Save ArticleDetails in DB
-                    self.saveArticleTableData(arr: arrayNews)
+                if (objHomeVM.HomeMdl?.articles) != nil {
+                    // MARK: -  Save News Artciles localally in background mode
+                    DispatchQueue.background(background: {
+                        self.saveArticleTableData(arr: self.arrayNews)
+                    }, completion:{
+                        self.status = self.objHomeVM.HomeMdl?.status ?? ""
+                        self.totalResults = self.objHomeVM.HomeMdl?.totalResults ?? 0
+                        
+                        for i in self.objHomeVM.HomeMdl!.articles!{
+                            self.arrayNews.append(i)
+                        }
+                        self.isLoaded = true
+                        self.tableview.reloadData()
+                    })
                 }
             } else {
                 print("Error", objHomeVM)

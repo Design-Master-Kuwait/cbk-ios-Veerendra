@@ -249,6 +249,9 @@ class BaseViewController: UIViewController {
     }
     
     
+    // --------------------------------------------------------
+    // MARK: - Status bar color change
+    // --------------------------------------------------------
     
     func ChangeStayusBarColor(){
            if #available(iOS 13.0, *) {
@@ -300,7 +303,8 @@ class BaseViewController: UIViewController {
                }
            }
     
-  
+    
+    
     
 }
 class DarkModeAwareNavigationController: UINavigationController {

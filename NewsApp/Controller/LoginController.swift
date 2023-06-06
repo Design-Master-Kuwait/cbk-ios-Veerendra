@@ -15,8 +15,8 @@ class LoginController: BaseViewController {
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var txtFldEmail: UITextField!
     @IBOutlet weak var txtFldPassword: UITextField!
-    @IBOutlet weak var btnFingerprint: UIButton!
     private let biometricIDAuth = BiometricIDAuth()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,13 +26,30 @@ class LoginController: BaseViewController {
     // MARK: - Update UI
     private func setupUI()
     {
+        
+        DispatchQueue.main.async {
+            self.txtFldEmail.showGradientSkeleton()
+            self.txtFldPassword.showGradientSkeleton()
+            self.btnLogin.showGradientSkeleton()
+            self.viewEmail.showGradientSkeleton()
+            self.viewPassword.showGradientSkeleton()
+            self.txtFldEmail.isUserInteractionDisabledWhenSkeletonIsActive = true
+            self.txtFldPassword.isUserInteractionDisabledWhenSkeletonIsActive = true
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+            self.txtFldEmail.hideSkeleton()
+            self.txtFldPassword.hideSkeleton()
+            self.btnLogin.hideSkeleton()
+            self.viewEmail.hideSkeleton()
+            self.viewPassword.hideSkeleton()
+        }
+        
         if LocalStore.shared.engTrueArabicFalse {
             txtFldEmail.placeholder = "Email".localalizedString(str: "en")
             txtFldPassword.placeholder = "Password".localalizedString(str: "en")
             btnLogin.setTitle("Login".localalizedString(str: "en"), for: .normal)
             txtFldEmail.textAlignment = .left
             txtFldPassword.textAlignment = .left
-            btnFingerprint.setTitle("Login with Fingerprint".localalizedString(str: "en"), for: .normal)
             setupNavigationBar(title: "Login".localalizedString(str: "en"), img: "back", imgRight: "", isBackButton: false, isRightButton: false, isBackButtonItem: true, isRightButton2: false, imgRight2: "",leftButton2: false, leftButton2Img: "", isCountrySelected: false)
         } else {
             
@@ -41,7 +58,6 @@ class LoginController: BaseViewController {
             btnLogin.setTitle("Login".localalizedString(str: "ar"), for: .normal)
             txtFldEmail.textAlignment = .right
             txtFldPassword.textAlignment = .right
-            btnFingerprint.setTitle("Login with Fingerprint".localalizedString(str: "ar"), for: .normal)
             setupNavigationBar(title: "Login".localalizedString(str: "ar"), img: "back", imgRight: "", isBackButton: false, isRightButton: false, isBackButtonItem: true, isRightButton2: false, imgRight2: "",leftButton2: false, leftButton2Img: "", isCountrySelected: false)
         }
         txtFldEmail.placeholderColor(color: UIColor.setColor(lightColor: #colorLiteral(red: 170/255, green: 170/255, blue: 170/255, alpha: 1), darkColor: #colorLiteral(red: 170/255, green: 170/255, blue: 170/255, alpha: 1)))
@@ -62,17 +78,12 @@ class LoginController: BaseViewController {
         setNeedsStatusBarAppearanceUpdate()
         let email = KeyChainWrapper.retriveValue(id: "email")
         let password = KeyChainWrapper.retriveValue(id: "password")
-        if email == "" && password == ""{
-            btnFingerprint.isHidden = true
-        } else {
-            btnFingerprint.isHidden = false
+        if email != "" && password != ""{
+            biometric()
         }
     }
-    // MARK: - Button's Action
-    @IBAction func btnLogin (_ sender:UIButton) {
-        loginValidation()
-    }
-    @IBAction func btnFingerprint (_ sender:UIButton) {
+    
+    func biometric() {
         biometricIDAuth.canEvaluate { (canEvaluate, _, canEvaluateError) in
             guard canEvaluate else {
                 AlertClass.alert(title: "Error",
@@ -92,6 +103,13 @@ class LoginController: BaseViewController {
                 
             }
         }
+    }
+    // MARK: - Button's Action
+    @IBAction func btnLogin (_ sender:UIButton) {
+        loginValidation()
+    }
+    @IBAction func btnFingerprint (_ sender:UIButton) {
+        
     }
     
     

@@ -8,11 +8,6 @@ public let baseURL = "https://newsapi.org/v2/"
 
 
 public struct API {
-    
-    
-    
-    // Mark : - Login & Register Api's -
-    
     public static let NewsHome_Api               =  baseURL + "top-headlines?"
     
 }
@@ -38,45 +33,19 @@ class Global {
 
 let NOINTERNET = "No Internet Connection"
 let APPNAME = "News App"
-
-// Mark : -  LOGIN & SIGN UP
-
 let EMAIL_EMPTY = "Email field can't be empty"
 let EMAIL_NOT_VALID = "Please enter email address"
 let PASSWORD_EMPTY = "Password field can't be empty"
 let PASSWORD_LENGTH = "Password should be at least 5 characters long"
-let CONFIRM_PASSWORD_EMPTY = "Confirm password field can't be empty"
-let PASSWORD_NOT_MATCH = "Password and confirm password doesn't match"
-let USER_NAME_EMPTY = "User name field can't be empty"
-let NAME = "Name field can't be empty"
-let phoneNoLegnth = "Please enter vaild phone number"
 
-// CHANGE PASSWORD
-
-let START_END_COMPARE_TIME  = "Please select end time grater than start time"
-let OLD_PASSWORD_EMPTY = "Current password field can't be empty"
-let NEW_PASSWORD_EMPTY = "New password field can't be empty"
-let NEW_OLD_PASSWORD_NOt_MATCH = "New Password and Confirm password doesn't match"
-let CONFORM_PASSWORD_EMPTY = "Confirm Password field can't be empty"
 
 
 /************************************ Constant ***********************************/
 
 let KAppDelegate: AppDelegate = UIApplication.shared.delegate as! AppDelegate
 public let AppUserDefaults            =      UserDefaults.standard
-public let AppNotificationCenter      =      NotificationCenter.default
-public typealias KeyValue             =      [String : Any]
 public let KPasswordMinLength         =       6
-public let KDelayTime                 =       2.0
-public let KTimeDuration              =       0.3
 public let KOffline                   =       "Offline"
-public let KPhoneMaxLength            =       12
-public let KEmailMaxLength            =       100
-public let KPasswordMaxLength         =       20
-public let KTankMaxLimit              =       10
-public let KAmountMaxLength           =       4
-public let KFirstNameLength           =       20
-public let KCommentLength             =       300
 public var KLoading                   =        "Loading..."
 public let KOk                        =        "Ok"
 
