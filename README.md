@@ -6,7 +6,7 @@
 
 3. News API Integration: I create an class "Services". Which is NSObject based class where i write my api function to use everywhere  . With the help of GetRequest function i integrated my API and gettting data from it. Filter and Country selection also implemented. You can choose select country and filter from navigation bar where i set selectable icon's. I used default pickerView for dropdown.
 
-4. Localization and Arabic Support: I created an Loclaziable file where i am using enum cases based on language preference and I set all the keys in both files English and Arabic.
+4. Localization and Arabic Support: I created an Loclaziable file where i am using enum cases based on language preference and I set all the keys in both files English and Arabic. Also you can check language selection process from Initial screen and Settings too.
 
 5. Pagination: I used pagination in News api with the help of array count and indexPath.row in cellForRowAt. Page no. is increasing according to data which coming from server.
 
@@ -22,3 +22,6 @@
 
 10. Offline Mode and Data Persistence: I am using Realm to store data locally. In this i created and persisted Table of Object type. Also create an DBOperation class to write Save, Delete, Fetch fucntions .
     I am getting data from api and storeing into DB through save function in Home Class. 
+
+11. Pull to refresh: I implemented on Home screen. You can check with pull down to refresh.
+12. Skeleton Loader: You can check on Login, Language Selection, Settings screen.
