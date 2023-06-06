@@ -1,6 +1,6 @@
 # cbk-ios-Veerendra
 
-1. MVVM Framework: I used MVVM articture to create this project. I seperatly created M- Model, V-View, VM-View Model. You can see folders with the name of "Model", "Controller", "ViewModel".
+1. MVVM Framework: I used MVVM architecture to create this project. I seperatly created M- Model, V-View, VM-View Model. You can see folders with the name of "Model", "Controller", "ViewModel".
 
 2. Login with Biometric Authentication: I used Biometric authorization face/touch for login. I created a KeyChain Wrapper to store values securly in KeyChain. To check KeyChain functionality. In Settings you will see an option to enable KeyChain with toogle button. If you enable it. It will Disappear from seetings and If you are coming from login you will get and alert for authorization to touch/face. Once you Verified. You may able to use it.
 
